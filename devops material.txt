@@ -1,0 +1,430 @@
+
+Command
+Description
+cd or cd ~
+
+Navigate to HOME directory
+
+cd ..
+
+Move one level up
+
+cd
+
+To change to a particular directory
+
+cd /
+
+Move to the root directory
+
+ls
+
+Lists all files and directories in the present working directory
+
+ls - R
+
+Lists files in sub-directories as well
+
+ls - a
+
+Lists hidden files as well
+
+ls - al
+
+Lists files and directories with detailed information like permissions, size, owner, etc.
+
+cat > filename
+
+Creates a new file
+
+cat filename
+
+Displays the file content
+
+cat file file2 > file3
+
+Joins two files (file1, file2) and stores the output in a new file (file3)
+
+mv  file "new file path"
+
+Moves the files to the new location
+
+mv filename new_file_name
+
+Renames the file to a new filename
+
+sudo
+
+Allows regular users to run programs with the security privileges of the superuser or root
+
+rm filename
+
+Deletes a file
+
+man
+
+Gives help information on a command
+
+history
+
+Gives a list of all past commands typed in the current terminal session
+
+clear
+
+Clears the terminal
+
+mkdir directoryname
+
+Creates a new directory in the present working directory or a at the specified path
+
+rmdir
+
+Deletes a directory
+
+mv
+
+Renames a directory
+
+pr -x	Divides the file into x columns
+pr -h	Assigns a header to the file
+pr -n	Denotes the file with Line Numbers
+lp -nc 
+lpr c	Prints "c" copies of the File
+lp -d lp -P	Specifies name of the printer
+apt-get	Command used to install and update packages
+mail -s 'subject' -c 'cc-address' -b 'bcc-address' 'to-address'	Command to send email
+mail -s "Subject" to-address < Filename	Command to send email with attachment
+
+
+
+Number	Permission Type	Symbol
+0	No Permission	---
+1	Execute	--x
+2	Write	-w-
+3	Execute + Write	-wx
+4	Read	r--
+5	Read + Execute	r-x
+6	Read +Write	rw-
+7	Read + Write +Execute	rwx
+
+
+Operator	Description
++	Adds a permission to a file or directory
+-	Removes the permission
+=	Sets the permission and overrides the permissions set earlier.
+
+
+User Denotations
+u	user/owner
+g	group
+o	other
+a	all
+
+In case you want to change the user as well as group for a file or directory use the command
+
+chown user:group filename
+
+For changing the ownership of a file/directory, you can use the following command:
+
+chown user
+
+The symbol '|' denotes a pipe.
+
+To avoid this, you can pipe the output of the 'cat' command to 'less' which will show you only one scroll length of content at a time.
+
+cat filename | less 
+
+
+Instead of 'less', you can also use.
+
+cat Filename | pg 
+or
+
+cat Filename | more
+
+
+Command	Description
+echo $VARIABLE	To display value of a variable
+env	Displays all environment variables
+VARIABLE_NAME= variable_value	Create a new variable
+unset  	Remove a variable
+export Variable=value	To set value of an environment variable
+
+
+Command	Function
+dir	Display files in the current directory of a remote computer
+cd "dirname"	change directory to "dirname" on a remote computer
+put file	upload 'file' from local to remote computer
+get file	Download 'file' from remote to local computer
+quit	Logout
+
+node {
+    
+        stage '1. Git checkout APP NAME'
+        git branch: 'master', credentialsId: 'df5ecec2-df25-4222-ba9f-c25d27fe438e', url: 'https://github.com/BinduSri3/OnlineBankingSystem.git'
+        
+    
+        stage '2. Prepare Environment'
+        tool name: 'maven', type: 'maven'
+        env.JAVA_HOME="${tool 'OpenJDK 1.8'}"
+        env.PATH="${env.JAVA_HOME}/bin :${ env.PATH}"
+        
+    
+        stage '3. Execute Unit Tests'
+                sh "mvn clean install -X"
+    }
+
+Devops in Devon links:
+
+https://github.com/devonfw/devon/wiki/getting-started-deployment-on-tomcat
+
+https://github.com/devonfw/devon/wiki/devon4j-deployment
+
+https://github.com/devonfw/devonfw-testing/wiki/DevOps-module
+
+https://github.com/devonfw/devonfw-testing/wiki
+
+https://github.com/devonfw/devonfw-testing/blob/develop/docker/dockerfile
+
+https://github.com/devonfw/devonfw-testing/blob/develop/example/maven_build_cmd.txt
+
+https://github.com/devonfw/devonfw-testing/blob/develop/example/pipelines/CI/Jenkinsfile_ProductionLine.groovy
+
+https://github.com/devonfw/devonfw-testing/blob/develop/example/pipelines/commons/MailSender.groovy
+
+https://github.com/devonfw/devonfw-testing/projects/6
+
+https://github.com/devonfw/devonfw-testing/wiki/Building-jobs-&-running-builds
+
+Devops links:
+
+jenkins,github,maven deploy:
+
+https://www.youtube.com/watch?v=biH1tPx4Z7g
+
+sample devops project-1:
+
+https://www.youtube.com/watch?v=Z9G5stlXoyg
+
+adding existing project to Github:
+
+https://www.youtube.com/watch?v=zVX7H67nLOM
+
+
+node {
+    
+        stage('SCM checkout')
+    
+    git 'https://github.com/BinduSri3/OnlineBankingSystem'
+   
+     
+    
+        stage('Compile_Package'){
+    
+      def mvnHome =  tool name: 'maven', type: 'maven'
+       
+   sh  "${mvnHome}/bin/mvn package"
+          
+        }
+   
+   
+   ===================================================================
+   
+   node {
+    
+        stage '1. Git checkout APP NAME'
+        git branch: 'master', credentialsId: 'df5ecec2-df25-4222-ba9f-c25d27fe438e', url: 'https://github.com/BinduSri3/OnlineBankingSystem.git'
+        
+    
+        stage '2. Prepare Environment'
+        tool name: 'maven', type: 'maven'
+        env.JAVA_HOME="${tool 'OpenJDK 1.8'}"
+        env.PATH="${env.JAVA_HOME}/bin :${ env.PATH}"
+        
+    
+        stage '3. Execute Unit Tests'
+                sh "mvn clean install -X"
+    }
+	
+	=========================================================================
+	
+	http://ec2-18-224-190-35.us-east-2.compute.amazonaws.com:5577/customer
+	
+	======================================================================
+
+	
+	
+	pipeline {
+    agent any 
+    stages {
+        stage('Stage 1') {
+            steps {
+                echo 'Online Banking System' 
+                git credentialsId: 'df5ecec2-df25-4222-ba9f-c25d27fe438e', url: 'https://github.com/BinduSri3/OnlineBankingSystem.git'
+                stage '2. Prepare Environment'
+            tool name: 'maven', type: 'maven'
+         env.JAVA_HOME="${tool 'OpenJDK 1.8'}"
+            env.PATH="${env.JAVA_HOME}/bin :${ env.PATH}"
+        
+    
+        stage '3. Execute Unit Tests'
+                sh "mvn clean install -X"
+    }
+        }
+    }
+}
+
+==================================================
+
+
+
+pipeline {
+    agent any 
+    stages {
+        stage('Git checkout APP NAME') {
+            steps {
+                echo 'Online Banking System' 
+                git credentialsId: 'df5ecec2-df25-4222-ba9f-c25d27fe438e', url: 'https://github.com/BinduSri3/OnlineBankingSystem.git'
+                    }  
+                    }
+                    
+                stage ('2. Prepare Environment'){
+              tool name: 'maven', type: 'maven'
+             env.JAVA_HOME="${tool 'OpenJDK 1.8'}"
+          env.PATH="${env.JAVA_HOME}/bin :${ env.PATH}"
+                }
+    
+        stage ('3. Compile Stage'){
+                steps{
+                    withMaven(maven:'maven'){
+                        sh 'mvn clean install'
+                    }
+                }
+        }
+    }
+}
+
+
+    }
+	
+	==========================================================
+	
+	Instance typet2.micro
+Desired number of instances1
+Key pair Bindusri
+ECS AMI IDami-06a8ae0ecd30e804c
+VPCvpc-e5322e8d
+Subnets subnet-4fdc7903
+VPC Availability Zonesus-east-2a, us-east-2b, us-east-2c
+Security groupsg-0771568f22d623a3c
+Launch configurationEC2ContainerService-cluster-for-jenkins-EcsInstanceLc-2VPNUL8HO9KH
+Auto Scaling groupEC2ContainerService-cluster-for-jenkins-EcsInstanceAsg-1FH1HIS8PCDPO
+
+===============================
+Access Key ID:
+AKIAIZOP7MYSYK23HTSQ
+
+Secret Access Key:
+DNzbB8itqrkdaMIk29GZzuSl+4ogghtR0HAhktk3
+=====================================================
+
+
+// This step should not normally be used in your script. Consult the inline help for details.
+ecsTaskTemplate(containerUser: '', cpu: 128, image: 'jenkinsci/jnlp-slave', inheritFrom: '', label: 'ecs-slaves', launchType: 'EC2', logDriver: '', memoryReservation: 992, name: 'jenkins-agent', networkMode: 'none', remoteFSRoot: '/home/jenkins', securityGroups: '0771568f22d623a3c', subnets: 'subnet-4fdc7903', taskDefinitionOverride: '', taskrole: '') {
+    // some block
+}
+
+node {
+    
+        stage('SCM checkout')
+        git 'https://github.com/BinduSri3/OnlineBankingSystem'
+        
+    
+        stage('Compile_Package'){
+          def mvnHome =  tool name: 'maven', type: 'maven'
+          sh  "${mvnHome}/bin/mvn package"
+          
+        }
+   
+ stage('Docker'){
+          sh "docker login -u : 'Chiru321' -p :'Chiru@123' "
+          
+        }
+    }
+	
+	==============================================================
+	
+	 FROM openjdk:10.0.2-jdk-slim
+
+ 
+
+ENV CLASSPATH /opt/lib
+
+ 
+
+EXPOSE 8080
+
+ 
+
+# copy pom.xml and wildcards to avoid this command failing if there's no target/lib directory
+
+
+COPY pom.xml /var/lib/jenkins/workspace/OnlineBankingPipeline/target/classes/META-INF/maven/com.cg/OnlineBankingSystem* /opt/lib/
+
+ 
+
+# NOTE we assume there's only 1 jar in the target dir
+
+# but at least this means we don't have to guess the name
+
+# we could do with a better way to know the name - or to always create an app.jar or something
+
+WORKDIR /
+
+
+COPY OnlineBankingSystem-0.0.1-SNAPSHOT.jar /var/lib/jenkins/workspace/OnlineBankingPipeline/target/ /opt/app.jar
+
+WORKDIR /opt
+
+CMD ["java", "-jar", "app.jar"]
+ 
+ 
+ 
+ 
+ 
+ 
+ -------------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ node {
+    
+        stage('SCM checkout')
+        git 'https://github.com/BinduSri3/OnlineBankingSystem'
+        
+    
+        stage('Compile_Package'){
+          def mvnHome =  tool name: 'maven', type: 'maven'
+          sh  "${mvnHome}/bin/mvn package"
+          
+        }
+   
+ stage('Docker'){
+          sh "docker login -u  chiru321 -p Chiru@123 "
+          sh "pwd"
+          sh "docker build -t onlinebanking ."
+          sh "docker push onlinebanking:v2"
+          
+        }
+    }
+-----------------------------------------------------------------------------	
+	steps {
+            withCredentials(bindings: [usernamePassword(credentialsId: 'f1d819ba-d5ba-4ed7-a651-2b0dd8668a4c', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+              script {
+                sh "docker login -u ${USERNAME} -p ${PASSWORD} ${DOCKER_REPO}"
+                sh "docker build -t ${DOCKER_REPO}/${DOCKER_ORG_IMAGE}:${DOCKER_VERSION} ."
+                sh "docker push ${DOCKER_REPO}/${DOCKER_ORG_IMAGE}:${DOCKER_VERSION}"
+              }
